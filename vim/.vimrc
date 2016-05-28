@@ -175,6 +175,14 @@ set nocompatible  "It should be first line
         let g:vimshell_environment_term="zsh"
         let g:vimshell_split_command="nicely" 
     " }
+
+    " FastFold{
+        let g:tex_fold_enabled=1
+        let g:vimsyn_folding='af'
+        let g:xml_syntax_folding = 1
+        let g:php_folding = 1
+        let g:perl_fold = 1
+    " }
     
     " NerdTree {
         let NERDTreeShowBookmarks=1
