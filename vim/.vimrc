@@ -379,6 +379,7 @@ set nocompatible  "It should be first line
         Plugin 'nathanaelkane/vim-indent-guides'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'scrooloose/syntastic'
+        Plugin 'Konfekt/FastFold'
         "Plugin 'vim-scripts/Vim-R-plugin'
         Plugin 'davidhalter/jedi-vim'
         Plugin 'Shougo/vimshell.vim'
