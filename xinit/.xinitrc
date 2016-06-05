@@ -36,8 +36,7 @@ fi
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
-session=${1:-awesome}
-
+session=${1:-openbox}
 case $session in
     awesome           ) exec awesome;;
     gnome             ) exec gnome-session;;
