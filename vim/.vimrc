@@ -44,7 +44,7 @@ set nocompatible  "It should be first line
     set shiftwidth=4            "Use indents of 4 spaces
     set expandtab               "Tabs are spaces, not tabs  
     set autoindent              "Indent at the same level of the previous line 
-    set smarttab
+    "set smarttab
     set smartindent             
     set nojoinspaces            "Prevents inserting two spaces after punctuation on a join
     set splitright              " Puts new vsplit windows to the right of the current
