@@ -24,7 +24,16 @@ set nocompatible  "It should be first line
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
     set iskeyword-=-                    " '-' is an end of word designator  set encoding=utf-8  
+    set winaltkeys=no " 设置 alt 键不映射到菜单栏
 " }
+
+" Lang & Encoding {{{
+    set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+    set encoding=utf-8
+    set langmenu=zh_CN
+    let $LANG = 'en_US.UTF-8'
+"language messages zh_CN.UTF-8
+" }}}
 
 " Vim UI {
 
@@ -85,22 +94,46 @@ set nocompatible  "It should be first line
     "Ctrl+s to save
     map <c-s> :w<CR>
 
-    nmap <leader>f= :resize -3<CR>
-    nmap <leader>f- :resize +3<CR>
-    nmap <leader>f, :vertical resize +3<CR>
-    nmap <leader>f. :vertical resize -3<CR>
+    " 移动分割窗口
+    nmap <C-j> <C-W>j
+    nmap <C-k> <C-W>k
+    nmap <C-h> <C-W>h
+    nmap <C-l> <C-W>l
+    
+    " 正常模式下 alt+j,k,h,l 调整分割窗口大小
+    nnoremap <M-j> :resize +3<cr>
+    nnoremap <M-k> :resize -3<cr>
+    nnoremap <M-h> :vertical resize -3<cr>
+    nnoremap <M-l> :vertical resize +3<cr>
+    
+    " 插入模式移动光标 alt + 方向键
+    inoremap <M-j> <Down>
+    inoremap <M-k> <Up>
+    inoremap <M-h> <left>
+    inoremap <M-l> <Right>
+    "nmap <leader>f= :resize -3<CR>
+    "nmap <leader>f- :resize +3<CR>
+    "nmap <leader>f, :vertical resize +3<CR>
+    "nmap <leader>f. :vertical resize -3<CR>
     "nnoremap j jzz
     "nnoremap k kzz
     "nnoremap <leader>bg :call ToggleBG()<CR>
     nmap <leader>w :w<CR>
     
     " Auto make file head
-    nmap <leader>mk :call SetTitle()<CR>
+    "nmap <leader>mk :call SetTitle()<CR>
+    " IDE like delete
+    inoremap <C-BS> <Esc>bdei
     
-
+    nnoremap vv ^vg_
+    " 转换当前行为大写
+    inoremap <C-u> <esc>mzgUiw`za
+    " 命令模式下的行首尾
+    cnoremap <C-a> <home>
+    cnoremap <C-e> <end>
     "Switch buffers
-    nmap <c-TAB> :bn!<CR>
-    nmap <s-TAB> :bp!<CR>
+    nmap <c-right> :bn!<CR>
+    nmap <c-left> :bp!<CR>
     "Open NerdTree window
     nnoremap <leader>ff :NERDTreeToggle<CR>
     "Open tagbar window
@@ -217,7 +250,7 @@ set nocompatible  "It should be first line
     " Ultisnips {
         " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
         let g:UltiSnipsExpandTrigger="<F4>"
-        let g:UltiSnipsJumpForwardTrigger="<c-j>"
+        let g:UltiSnipsJumpForwardTrigger="<c-n>"
         let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
         " If you want :UltiSnipsEdit to split your window.
