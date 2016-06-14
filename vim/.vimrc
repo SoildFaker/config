@@ -78,7 +78,7 @@ set nocompatible  "It should be first line
 " }
 
 " Key Mappings & Settings{
-    let mapleader="\\"
+    let mapleader=","
     "Select all
     "map <c-a> ggVG
     nnoremap 0 g0
@@ -106,6 +106,12 @@ set nocompatible  "It should be first line
     nnoremap <M-h> :vertical resize -3<cr>
     nnoremap <M-l> :vertical resize +3<cr>
     
+    nnoremap <leader>tn :tabnew<cr>
+    nnoremap <leader>tc :tabclose<cr>
+    nnoremap <leader>th :tabp<cr>
+    nnoremap <leader>tl :tabn<cr>
+
+    nnoremap <leader>ss :source ~/.vimrc<cr>
     " 插入模式移动光标 alt + 方向键
     inoremap <M-j> <Down>
     inoremap <M-k> <Up>
@@ -249,9 +255,9 @@ set nocompatible  "It should be first line
     
     " Ultisnips {
         " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-        let g:UltiSnipsExpandTrigger="<F4>"
-        let g:UltiSnipsJumpForwardTrigger="<c-n>"
-        let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+        let g:UltiSnipsExpandTrigger="<m-s>"
+        let g:UltiSnipsJumpForwardTrigger="<m-n>"
+        let g:UltiSnipsJumpBackwardTrigger="<m-b>"
 
         " If you want :UltiSnipsEdit to split your window.
         let g:UltiSnipsEditSplit="vertical"
@@ -356,7 +362,7 @@ set nocompatible  "It should be first line
         inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
         " Close popup by <Space>.
         "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-        
+
         " AutoComplPop like behavior.
         "let g:neocomplete#enable_auto_select = 1
         
@@ -414,7 +420,7 @@ set nocompatible  "It should be first line
         Plugin 'SirVer/ultisnips'
         Plugin 'mbbill/undotree'
         Plugin 'honza/vim-snippets'
-        Plugin 'terryma/vim-multiple-cursors'
+        "Plugin 'kristijanhusak/vim-multiple-cursors'
         Plugin 'vim-latex/vim-latex'
         Plugin 'tpope/vim-surround'
         Plugin 'nathanaelkane/vim-indent-guides'
@@ -469,52 +475,8 @@ set nocompatible  "It should be first line
         "endif
     "endfunction
 " }
-
 " Code Assist {
     "auto insert fileheader when codefile was created.
     "autocmd BufNewFile *.cpp,*.[ch],*.sh,*rb,*.py exec ":call SetTitle()" 
-    func SetTitle() 
-      "if created a shell script
-      let g:mtAuthor="Enbin li"
-      let g:mtMail="enbinli@outlook.com"
-      if &filetype == 'sh' 
-        call setline(1,"\#!/bin/bash") 
-        call append(line("."), "") 
-        elseif &filetype == 'python'
-            call setline(1,"#!/usr/bin/env python")
-            call append(line("."),"# coding=utf-8")
-          call append(line(".")+1, "") 
-    
-        elseif &filetype == 'ruby'
-            call setline(1,"#!/usr/bin/env ruby")
-            call append(line("."),"# encoding: utf-8")
-          call append(line(".")+1, "")
-    
-    "    elseif &filetype == 'mkd'
-    "        call setline(1,"<head><meta charset=\"UTF-8\"></head>")
-      else 
-        call append(0, "/*************************************************************************") 
-        call append(1,"	> File Name: ".expand("%")) 
-        call append(2, "	> Author: ".expand(g:mtAuthor)) 
-        call append(3, "	> Mail: " .expand(g:mtMail)) 
-        call append(4, "	> Created Time: ".strftime("%c")) 
-        call append(5, " ************************************************************************/") 
-        call append(6, "")
-      endif
-      if expand("%:e") == 'cpp'
-        call append(7, "#include<iostream>")
-        call append(8, "using namespace std;")
-        call append(9, "")
-      endif
-      if &filetype == 'c'
-        call append(7, "#include<stdio.h>")
-        call append(8, "")
-      endif
-      if expand("%:e") == 'h'
-        call append(7, "#ifndef _".toupper(expand("%:r"))."_H")
-        call append(8, "#define _".toupper(expand("%:r"))."_H")
-        call append(9, "#endif")
-      endif
-    endfunc 
 " }
 
