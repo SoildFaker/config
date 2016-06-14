@@ -48,18 +48,18 @@ set nocompatible  "It should be first line
 
 " Formating {
     set wrap                    "wrap long lines
-    set softtabstop=4           "Let backspace delete indent
-    set tabstop=4               "An indentation every four columns
-    set shiftwidth=4            "Use indents of 4 spaces
+    set softtabstop=2           "Let backspace delete indent
+    set tabstop=2               "An indentation every four columns
+    set shiftwidth=2            "Use indents of 4 spaces
     set expandtab               "Tabs are spaces, not tabs  
     set autoindent              "Indent at the same level of the previous line 
-    "set smarttab
+    set smarttab
     set smartindent             
     set nojoinspaces            "Prevents inserting two spaces after punctuation on a join
     set splitright              " Puts new vsplit windows to the right of the current
     set splitbelow              " Puts new split windows to the bottom of the current
-    set cindent
-    set foldmethod=syntax       "Automatically fold
+    "set cindent
+    "set foldmethod=syntax       "Automatically fold
     "Close swap files
     set nobackup
     set nowb
@@ -168,7 +168,7 @@ set nocompatible  "It should be first line
 
     " IndentGuides {
         "this help you see indent clearly 
-        nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
+        nmap <silent> <Leader>ig :IndentLinesToggle<cr>
     " }
 
     " easymotion {
@@ -290,9 +290,19 @@ set nocompatible  "It should be first line
     " }
     
     " indent guides {
-        let g:indent_guides_guide_size=1
+        "let g:indent_guides_guide_size=1
     " }
     
+
+    " indent line {
+        " Vim
+        let g:indentLine_color_term = 239
+        "GVim
+        let g:indentLine_color_gui = '#A4E57E'
+        let g:indentLine_char = '¦'
+        let g:indentLine_enabled = 1
+    " }
+
     " Tabularize {
     " }
     
@@ -423,7 +433,8 @@ set nocompatible  "It should be first line
         "Plugin 'kristijanhusak/vim-multiple-cursors'
         Plugin 'vim-latex/vim-latex'
         Plugin 'tpope/vim-surround'
-        Plugin 'nathanaelkane/vim-indent-guides'
+        "Plugin 'nathanaelkane/vim-indent-guides'
+        Plugin 'Yggdroot/indentLine'
         Plugin 'scrooloose/nerdcommenter'
         Plugin 'scrooloose/syntastic'
         Plugin 'Konfekt/FastFold'
