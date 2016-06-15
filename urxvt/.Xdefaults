@@ -2,6 +2,8 @@
 URxvt.preeditType:Root
 !!imput method
 URxvt.inputMethod:ibus
+URxvt.transparent: true
+URxvt.shading: 15
 !!color
 URxvt.background:              [80]#002b36
 URxvt.foreground:              #839496
