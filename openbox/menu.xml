@@ -127,14 +127,14 @@
 			</item>
 		</menu>
 		<menu id="19" label="Shells">
-			<item label="Konsole">
-				<action name="Execute">
-					<execute>konsole</execute>
-				</action>
-			</item>
 			<item label="urxvt">
 				<action name="Execute">
 					<execute>urxvt</execute>
+				</action>
+			</item>
+			<item label="Konsole">
+				<action name="Execute">
+					<execute>konsole</execute>
 				</action>
 			</item>
 			<item label="File Manager PCManFM">
