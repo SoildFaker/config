@@ -1,5 +1,6 @@
 !!$HOME/.Xdefaults
 URxvt.preeditType:Root
+URxvt.termName: rxvt
 !!imput method
 URxvt.inputMethod:fcitx
 !!color

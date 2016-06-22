@@ -59,7 +59,7 @@ set nocompatible  "It should be first line
     set splitright              " Puts new vsplit windows to the right of the current
     set splitbelow              " Puts new split windows to the bottom of the current
     "set cindent
-    "set foldmethod=syntax       "Automatically fold
+    set foldmethod=syntax       "Automatically fold
     "Close swap files
     set nobackup
     set nowb
