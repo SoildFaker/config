@@ -1,19 +1,19 @@
 #!/bin/bash
-rm -r /home/enbin/.vim
-rm -r /home/enbin/.vimrc
-rm -r /home/enbin/.Xdefaults
-rm -r /home/enbin/.xinitrc
-rm -r /home/enbin/.xprofile
-rm -r /home/enbin/.xserverrc
-rm -r /home/enbin/.tmux.conf
-rm -r /home/enbin/.config/openbox
-rm -r /home/enbin/.config/awesome
-ln -s $PWD/awesome /home/enbin/.config/awesome
-ln -s $PWD/vim/.vim /home/enbin/.vim
-ln -s $PWD/vim/.vimrc /home/enbin/.vimrc
-ln -s $PWD/urxvt/.Xdefaults /home/enbin/.Xdefaults
-ln -s $PWD/xinit/.xinitrc /home/enbin/.xinitrc
-ln -s $PWD/xinit/.xprofile /home/enbin/.xprofile
-ln -s $PWD/xinit/.xserverrc /home/enbin/.xserverrc
-ln -s $PWD/openbox /home/enbin/.config/openbox
+rm -r /home/faker/.vim
+rm -r /home/faker/.vimrc
+rm -r /home/faker/.Xdefaults
+rm -r /home/faker/.xinitrc
+rm -r /home/faker/.xprofile
+rm -r /home/faker/.xserverrc
+rm -r /home/faker/.tmux.conf
+rm -r /home/faker/.config/openbox
+rm -r /home/faker/.config/awesome
+ln -s $PWD/awesome /home/faker/.config/awesome
+ln -s $PWD/vim/.vim /home/faker/.vim
+ln -s $PWD/vim/.vimrc /home/faker/.vimrc
+ln -s $PWD/urxvt/.Xdefaults /home/faker/.Xdefaults
+ln -s $PWD/xinit/.xinitrc /home/faker/.xinitrc
+ln -s $PWD/xinit/.xprofile /home/faker/.xprofile
+ln -s $PWD/xinit/.xserverrc /home/faker/.xserverrc
+ln -s $PWD/openbox /home/faker/.config/openbox
 ln -s $PWD/tmux/.tmux.conf
