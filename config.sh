@@ -1,13 +1,17 @@
 #!/bin/bash
-rm -r /home/faker/.vim
-rm -r /home/faker/.vimrc
-rm -r /home/faker/.Xdefaults
-rm -r /home/faker/.xinitrc
-rm -r /home/faker/.xprofile
-rm -r /home/faker/.xserverrc
-rm -r /home/faker/.tmux.conf
-rm -r /home/faker/.config/openbox
-rm -r /home/faker/.config/awesome
+
+user = $(users)
+curdir = $(pwd)
+rm -r /home/$user/.vim
+rm -r /home/$user/.vimrc
+rm -r /home/$user/.Xdefaults
+rm -r /home/$user/.xinitrc
+rm -r /home/$user/.xprofile
+rm -r /home/$user/.xserverrc
+rm -r /home/$user/.tmux.conf
+rm -r /home/$user/.config/openbox
+rm -r /home/$user/.config/awesome
+rm -r /home/$user/.config/i3/config
 ln -s $PWD/awesome /home/faker/.config/awesome
 ln -s $PWD/vim/.vim /home/faker/.vim
 ln -s $PWD/vim/.vimrc /home/faker/.vimrc
