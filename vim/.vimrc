@@ -1,57 +1,102 @@
-set nocompatible  "It should be first line
+"set nocompatible  "It should be first line
+
+" vim-plug {
+    call plug#begin('~/.vim/plugged')
+
+    " colorscheme
+    Plug 'morhetz/gruvbox'
+
+    " status line
+    Plug 'bling/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    " completion and syntax check
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'neomake/neomake'
+
+    " function parameter completion
+    Plug 'Shougo/echodoc.vim'
+
+    " function list / search
+    Plug 'Yggdroot/LeaderF'
+
+    Plug 'scrooloose/nerdtree'
+    Plug 'tomtom/tlib_vim'
+    Plug 'MarcWeber/vim-addon-mw-utils'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'godlygeek/tabular'
+    Plug 'SirVer/ultisnips'
+    Plug 'mbbill/undotree'
+    Plug 'honza/vim-snippets'
+    Plug 'tpope/vim-surround'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'scrooloose/nerdcommenter'
+
+    Plug 'Konfekt/FastFold'
+    Plug 'vim-scripts/fcitx.vim'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'Shougo/vimproc'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'vim-latex/vim-latex'
+
+    " Initialize plugin system
+    call plug#end()
+" }
 
 " General {
-    set background=dark     "Assume a dark background
+    syntax enable               "Syntax highlighting
+    set background=dark         "Assume a dark background
+    colorscheme gruvbox         "Load a colorscheme
 
-    syntax on                   "Syntax highlighting
     set mouse=a                 "Automatically enable mouse usage
     set mousehide               "Hide mouse cursor while typing
     scriptencoding utf-8
     
     set cc=80                   "show a refence line
     set so=999                  " let the cursor always at middle screen
-    "set autochdir           "Automatically change the directory
+    "set autochdir              "Automatically change the directory
     "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h |endif
     "Always switch to the current file directory
 
-    "set autowrite                       " Automatically write a file when leaving a modified buffer
-    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    "set autowrite               " Automatically write a file when leaving a modified buffer
+    set shortmess+=filmnrxoOtT   " Abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-    set virtualedit=onemore             " Allow for cursor beyond last character
-    set history=1000                    " Store a ton of history (default is 20)
-    "set spell                           " Spell checking on
-    set hidden                          " Allow buffer switching without saving
-    set iskeyword-=.                    " '.' is an end of word designator
-    set iskeyword-=#                    " '#' is an end of word designator
-    set iskeyword-=-                    " '-' is an end of word designator  set encoding=utf-8  
-    set winaltkeys=no " 设置 alt 键不映射到菜单栏
-" }
+    set virtualedit=onemore      " Allow for cursor beyond last character
+    set history=1000             " Store a ton of history (default is 20)
+    "set spell                   " Spell checking on
+    set hidden                   " Allow buffer switching without saving
+    set iskeyword-=.             " '.' is an end of word designator
+    set iskeyword-=#             " '#' is an end of word designator
+    set iskeyword-=-             " '-' is an end of word designator  set encoding=utf-8  
+    set winaltkeys=no            " alt key
+    set fillchars+=vert:\|       " no split symbol
+  " }
 
-" Lang & Encoding {{{
+" Lang & Encoding {
     set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
     set encoding=utf-8
     set langmenu=zh_CN
     let $LANG = 'en_US.UTF-8'
-"language messages zh_CN.UTF-8
-" }}}
+    "language messages zh_CN.UTF-8
+" }
 
 " Vim UI {
-
     set laststatus=2
-    colorscheme molokai         "Load a colorscheme
     set nu                      "Line numbers on
     set cursorline              "Highlight current line
+    set cursorcolumn
+    set conceallevel=0
     "set relativenumber
     set tabpagemax=15           "Only show 15 tabs
     set showmatch               "Show matching brackets/parenthesis
-
+    set noshowmode
 " }
 
 " Formating {
     set wrap                    "wrap long lines
-    set softtabstop=2           "Let backspace delete indent
-    set tabstop=2               "An indentation every four columns
-    set shiftwidth=2            "Use indents of 2 spaces
+    set softtabstop=4           "Let backspace delete indent
+    set tabstop=4               "An indentation every four columns
+    set shiftwidth=4            "Use indents of 4 spaces
     set expandtab               "Tabs are spaces, not tabs
     set autoindent              "Indent at the same level of the previous line
     set smarttab
@@ -69,7 +114,7 @@ set nocompatible  "It should be first line
 
     if has("gui_running")
         set guioptions-=T
-        "隐藏`滚动条
+        " Hide scroll bar
         set guioptions-=l
         set guioptions-=L
         set guioptions-=r
@@ -123,12 +168,16 @@ set nocompatible  "It should be first line
     nmap <leader>w :w<CR>
     "Open NerdTree window
     nnoremap <leader>ff :NERDTreeToggle<CR>
-    "Open tagbar window
-    nnoremap <leader>fg :TagbarToggle<CR>
-    nnoremap <leader>bb :bp<CR> 
-    nnoremap <leader>nn :bn<CR> 
+    ""Open tagbar window
+    "nnoremap <leader>fg :TagbarToggle<CR>
+    "nnoremap <leader>bb :bp<CR> 
+    "nnoremap <leader>nn :bn<CR> 
     " call shell
     nmap <leader>fs :terminal<CR>
+    " 命令模式下的行首尾
+    "cnoremap <C-a> <home>
+    "cnoremap <C-e> <end>
+    tnoremap <Esc> <C-W>N:bd!<CR>
 
     " 插入模式移动光标 alt + 方向键
     inoremap <m-j> <Down>
@@ -144,10 +193,6 @@ set nocompatible  "It should be first line
     nnoremap vv ^vg_
     " 转换当前行为大写
     "inoremap <C-u> <esc>mzgUiw`za
-    " 命令模式下的行首尾
-    "cnoremap <C-a> <home>
-    "cnoremap <C-e> <end>
-    tnoremap <Esc> <C-W>N:bd!<CR>
     "Switch buffers
     nmap <m-j> :bn<CR>
     nmap <m-k> :bp<CR>
@@ -156,7 +201,7 @@ set nocompatible  "It should be first line
     
     " YouCompleteMe {
         " Enter to select
-        "inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+        inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
         "上下左右键的行为 会显示其他信息
         inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
         inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
@@ -245,22 +290,25 @@ set nocompatible  "It should be first line
 
     " }
     
-    " Syntastic {
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-        let g:syntastic_ignore_files=[".*\.py$",".*\.tex$",".*\.s$"]
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 0
-    " }
+    "" ale {
+        "let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+        "let g:ale_lint_on_text_changed = 'normal'
+        "let g:ale_lint_on_insert_leave = 1
+        "let g:airline#extensions#ale#enabled = 1
+        "let g:ale_c_gcc_options = '-std=c++11 -Wall -I ./ -I ./include/'
+        "let g:ale_c_clang_options = '-std=c++11 -Wall -I ./ -I ./include/'
+        "let g:ale_c_clangtidy_options = '-I ./include/'
+   
+        ""let g:ale_sign_column_always = 1
+        "let g:ale_sign_error = '>>'
+        "let g:ale_sign_warning = '--'
+    "" }
     
     " Ultisnips {
         " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-        let g:UltiSnipsExpandTrigger="<m-s>"
-        let g:UltiSnipsJumpForwardTrigger="<m-n>"
-        let g:UltiSnipsJumpBackwardTrigger="<m-b>"
+        let g:UltiSnipsExpandTrigger="<c-l>"
+        let g:UltiSnipsJumpForwardTrigger="<c-n>"
+        let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
         " If you want :UltiSnipsEdit to split your window.
         let g:UltiSnipsEditSplit="vertical"
@@ -275,41 +323,41 @@ set nocompatible  "It should be first line
         endif
     " }
 
-    " Ctrlp {
-        let g:ctrlp_map = '<c-p>'
-        let g:ctrlp_cmd = 'CtrlP'
-        let g:ctrlp_show_hidden=1
-        let g:ctrlp_working_path_mode = 'ra'
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.o$\|\.dll$\|\.pyc$' }
-    " }
+    "" Ctrlp {
+        "let g:ctrlp_map = '<c-p>'
+        "let g:ctrlp_cmd = 'CtrlP'
+        "let g:ctrlp_show_hidden=1
+        "let g:ctrlp_working_path_mode = 'ra'
+        "let g:ctrlp_custom_ignore = {
+            "\ 'dir':  '\.git$\|\.hg$\|\.svn$',
+            "\ 'file': '\.exe$\|\.so$\|\.o$\|\.dll$\|\.pyc$' }
+    "" }
 
     " ariline {
         let g:airline_powerline_fonts=1
         let g:airline#extensions#tabline#enabled = 1
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline,FontAwesome
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline,Source\ Han,FontAwesome
 
     " }
     
     " indent guides {
         "let g:indent_guides_guide_size=1
+        let g:indent_guides_enable_on_vim_startup = 0
+        hi IndentGuidesOdd  ctermbg=black
+        hi IndentGuidesEven ctermbg=darkgrey
     " }
     
 
-    " indent line {
-        " Vim
-        let g:indentLine_color_term = 239
-        "GVim
-        let g:indentLine_color_gui = '#A4E57E'
-        let g:indentLine_char = '┆ '
-        let g:indentLine_enabled = 1
-        let g:indentLine_noConcealCursor=2
-    " }
+    "" indent line {
+        "" Vim
+        "let g:indentLine_color_term = 239
+        ""GVim
+        "let g:indentLine_color_gui = '#A4E57E'
+        "let g:indentLine_char = '┆ '
+        "let g:indentLine_enabled = 1
+        "let g:indentLine_noConcealCursor=2
+    "" }
 
-    " Tabularize {
-    " }
-    
     " YouCompleteMe {
         " 自动补全配置
         set completeopt=longest,menu "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
@@ -319,21 +367,23 @@ set nocompatible  "It should be first line
 
         "let g:ycm_key_list_select_completion = ['<Down>']
         "let g:ycm_key_list_previous_completion = ['<Up>']
-        let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-        let g:syntastic_c_checkers=['make']
+        let g:ycm_confirm_extra_conf = 0 "关闭加载.ycm_extra_conf.py提示
+        "let g:syntastic_c_checkers=['make']
+        let g:ycm_add_preview_to_completeopt = 0
+        let g:ycm_show_diagnostics_ui = 0
         "let g:syntastic_always_populate_loc_list = 1
         "let g:syntastic_check_on_open=1
         "let g:syntastic_enable_signs=1
         "let g:syntastic_error_symbol = '✗'
         "let g:syntastic_warning_symbol = '⚠'
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*gbar
+        "set statusline+=%#warningmsg#
+        "set statusline+=%{SyntasticStatuslineFlag()}
+        "set statusline+=%*gbar
 
-        let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
-        let g:ycm_min_num_of_chars_for_completion=2	" 从第2个键入字符就开始罗列匹配项
-        let g:ycm_cache_omnifunc=0	"是否禁止缓存匹配项,每次都重新生成匹配项
-        let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
+        let g:ycm_collect_identifiers_from_tags_files = 1	" 开启 YCM 基于标签引擎
+        let g:ycm_min_num_of_chars_for_completion = 2	" 从第2个键入字符就开始罗列匹配项
+        let g:ycm_cache_omnifunc = 0	"是否禁止缓存匹配项,每次都重新生成匹配项
+        let g:ycm_seed_identifiers_with_syntax = 1	" 语法关键字补全
         "在注释输入中也能补全
         let g:ycm_complete_in_comments = 1
         "在字符串输入中也能补全
@@ -344,133 +394,64 @@ set nocompatible  "It should be first line
 
      "}
 
-"     " Neocomplete{
-        "" Disable AutoComplPop.
-        "let g:acp_enableAtStartup = 0
-        "" Use neocomplete.
-        "let g:neocomplete#enable_at_startup = 1
-        "" Use smartcase.
-        "let g:neocomplete#enable_smart_case = 1
-        "" Set minimum syntax keyword length.
-        "let g:neocomplete#sources#syntax#min_keyword_length = 3
-        "let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-        
-        "" Define dictionary.
-        "let g:neocomplete#sources#dictionary#dictionaries = {
-            "\ 'default' : '',
-            "\ 'vimshell' : $HOME.'/.vimshell_hist',
-            "\ 'scheme' : $HOME.'/.gosh_completions'
-                "\ }
-        
-        "" Define keyword.
-        "if !exists('g:neocomplete#keyword_patterns')
-            "let g:neocomplete#keyword_patterns = {}
-        "endif
-        "let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-        
-        "" Plugin key-mappings.
-        "inoremap <expr><C-g>     neocomplete#undo_completion()
-        "inoremap <expr><C-l>     neocomplete#complete_common_string()
-        
-        "" Recommended key-mappings.
-        "" <CR>: close popup and save indent.
-        "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-        "function! s:my_cr_function()
-          "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-          "" For no inserting <CR> key.
-          ""return pumvisible() ? "\<C-y>" : "\<CR>"
-        "endfunction
-        "" <TAB>: completion.
-        "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-        "" <C-h>, <BS>: close popup and delete backword char.
-        "inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-        "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-        "" Close popup by <Space>.
-        ""inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-        "" AutoComplPop like behavior.
-        ""let g:neocomplete#enable_auto_select = 1
-        
-        "" Shell like behavior(not recommended).
-        ""set completeopt+=longest
-        ""let g:neocomplete#enable_auto_select = 1
-        ""let g:neocomplete#disable_auto_complete = 1
-        ""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-        
-        "" Enable omni completion.
-        "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        
-        "" Enable heavy omni completion.
-        "if !exists('g:neocomplete#sources#omni#input_patterns')
-          "let g:neocomplete#sources#omni#input_patterns = {}
-        "endif
-        "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-        "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-        "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-        
-        "" For perlomni.vim setting.
-        "" https://github.com/c9s/perlomni.vim
-        "let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-     "" }
-
     " vim-latex{
-        autocmd BufNewFile,BufRead *.tex IndentLinesDisable
-        let g:tex_indent_items=0
-        set grepprg=grep\ -nH\ $*
-        let g:tex_flavor='xelatex'
-        set iskeyword+=:
+        "autocmd BufNewFile,BufRead *.tex IndentLinesDisable
         "autocmd BufEnter*.tex
-        set sw =2
+        "let g:Tex_Indent_Items = 0
+        let g:Tex_Flavor = 'xelatex'
+        let g:Tex_ViewRule_pdf = 'zathura'
+        let g:Tex_MultipleCompileFormats = 'pdf'
+	    let g:Tex_DefaultTargetFormat = 'pdf'
+        let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode $*'
+        set grepprg=grep\ -nH\ $*
+        set iskeyword+=:
     
     " }
-    " ag.vim {
-        let g:ackprg = 'ag --vimgrep'
-        "command Agg exe 'Ag -Q ' . expand('<cword>')
+
+    " leaderF{
+        let g:Lf_ShortcutF = '<c-p>'
+        let g:Lf_ShortcutB = '<c-b>'
+        noremap <leader>fh :LeaderfMru<cr>
+        noremap <leader>fg :LeaderfFunction<cr>
+        noremap <leader>fb :LeaderfBuffer<cr>
+        noremap <leader>ft :LeaderfTag<cr>
+        let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+        
+        let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+        let g:Lf_WorkingDirectoryMode = 'Ac'
+        let g:Lf_WindowHeight = 0.30
+        let g:Lf_CacheDirectory = expand('~/.vim/cache')
+        let g:Lf_ShowRelativePath = 0
+        let g:Lf_HideHelp = 1
+        let g:Lf_StlColorscheme = 'powerline'
+        let g:Lf_PreviewResult = {'Function':0}
+         
+        let g:Lf_NormalMap = {
+            \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+            \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+            \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+            \ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+            \ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+            \ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+            \ }
     " }
+    
+    " echodoc {
+        let g:echodoc#enable_at_startup = 1
+    " }
+    
+" }
 
-    " Vundle {
-        filetype off
+" neomake {
+    " Full config: when writing or reading a buffer, and on changes in insert and
+    " normal mode (after 1s; no delay when writing).
+    call neomake#configure#automake('nrwi', 500)
+    let g:neomake_c_enabled_makers = ['clang']
+    let g:neomake_c_clang_maker = {
+        \ 'exe': 'clang',
+        \ 'args': ['-fsyntax-only','-Wall', '-Iinclude', '-I./','-Wextra'],
+    \ }
 
-        set rtp+=~/.vim/bundle/Vundle.vim
-        call vundle#begin()
-
-        Plugin 'VundleVim/Vundle.vim'
-        Plugin 'Valloric/YouCompleteMe'
-        Plugin 'bling/vim-airline'
-        Plugin 'ctrlpvim/ctrlp.vim'
-        Plugin 'majutsushi/tagbar'
-        Plugin 'scrooloose/nerdtree'
-        Plugin 'tomtom/tlib_vim'
-        Plugin 'MarcWeber/vim-addon-mw-utils'
-        Plugin 'easymotion/vim-easymotion'
-        Plugin 'godlygeek/tabular'
-        Plugin 'SirVer/ultisnips'
-        Plugin 'mbbill/undotree'
-        Plugin 'honza/vim-snippets'
-        "Plugin 'kristijanhusak/vim-multiple-cursors'
-        Plugin 'vim-latex/vim-latex'
-        Plugin 'tpope/vim-surround'
-        "Plugin 'nathanaelkane/vim-indent-guides'
-        Plugin 'Yggdroot/indentLine'
-        Plugin 'scrooloose/nerdcommenter'
-        Plugin 'scrooloose/syntastic'
-        Plugin 'Konfekt/FastFold'
-        Plugin 'vim-scripts/fcitx.vim'
-        "Plugin 'vim-scripts/Vim-R-plugin'
-        Plugin 'davidhalter/jedi-vim'
-        "Plugin 'Shougo/neocomplete.vim'
-        Plugin 'Shougo/vimproc'
-        "Plugin 'altercation/vim-colors-solarized'
-        Plugin 'jiangmiao/auto-pairs'
-        Plugin 'vim-scripts/ag.vim'
-
-        call vundle#end()
-        filetype plugin indent on
-    "}
 " }
 
 " Command {
